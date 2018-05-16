@@ -141,8 +141,56 @@ public class ArvoreVP {
         no.setPai(y);
     }
     
-    void remover(int p){
-        
+    void remover(int valor){
+        if(raiz == null){
+            return;
+        }
+        NoVP p = raiz;
+        boolean achou = false;
+        while( p!= null){
+            if(p.getValor() == valor){
+                achou = true;
+                break;
+            }
+            if(p.getValor() < valor){
+                p = p.getProx();
+            }else{
+                p = p.getAnt();
+            }
+        }
+        if( achou == false){
+            return;
+        }else{ // IMPRIME NA TELA, BOM PARA TESTES
+            System.out.println("Iniciando remocao do valor " + valor);
+            if(p.getAnt() == null && p.getProx() != null){
+                System.out.println("No a ser removido tem 2 filhos");
+                NoVP predecessor = getPredecessor(p.getAnt());
+                System.out.println("Seu predecessor eh o no " + predecessor.getValor());
+                System.out.println("Substituindo o no a ser removido " + p.getValor() + " pelo seu predecessor "+predecessor.getValor());
+                p.setValor(predecessor.getValor());
+                p = predecessor;
+                System.out.println("Agora o no a ser ajustado eh o no "+ p.getValor());
+            }else{
+                System.out.println("No a ser removido tem 1 ou nenhum filho");
+            }
+            // P deve ser folha ou ter apenas 1 filho
+            if(p.getAnt() == null || p.getProx() == null){                
+            }else{
+                System.out.println("Erro: P tem 2 filhos");
+            }
+            //Pega o unico filho de p, se houver
+            NoVP filho = (p.getProx()==null) ? p.getAnt() : p.getProx();
+            if(p.getCor() == NoVP.PRETO){
+                if(filho != null){
+                    p.setCor(filho.getCor());
+                }else{
+                    p.setCor(NoVP.PRETO);
+                }
+                removerCaso1(p);
+            }
+            trocaNos(p,filho);
+            System.out.println("Deletou" + valor);
+        }
     }
     
     void removerCaso1(NoVP n){
