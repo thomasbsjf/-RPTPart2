@@ -57,6 +57,9 @@ public class ArvoreB {
             if(no.filho[k].chave[NoB.MAX] != 0){
                 NoB novoNo = new NoB();
                 int s = split(no.filho[k], novoNo);
+                insereNo(no, s);
+                no.filho[no.getPos(s)] = no.filho[no.getPos(s)+1];
+                no.filho[no.getPos(s)+1] = novoNo;
             }
         }
     }
@@ -67,7 +70,29 @@ public class ArvoreB {
         
     }
     NoB buscar(int valor, NoB n){
-        return n;
+        NoB aux = new NoB();
+        int k = 0;
+        
+        if(n == null){
+            return null;
+        }
+        else{
+            if(n.getPos(valor) != -1){
+                return n;
+            }
+        }
+        while(k < n.tamanho){
+            if(n.chave[k] < valor)k++;
+            else break;
+        }
+        if(n.chave[k] < valor){
+            k++;
+        }
+        aux = buscar(valor, n.filho[k]);
+        if( aux != null){
+            return aux;
+        }
+        return null;
     }
     
 
@@ -75,7 +100,10 @@ public class ArvoreB {
         
     }
     boolean buscar(int valor){
-       return true; 
+       if(buscar(valor,raiz) != null){       
+            return true; 
+       }
+       return false;
     }
 
 }
