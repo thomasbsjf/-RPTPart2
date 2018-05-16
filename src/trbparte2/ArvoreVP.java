@@ -36,16 +36,55 @@ public class ArvoreVP {
         }
     }
     void corrigeCaso2(NoVP no){
-        
+        if(no.getPai().getCor() == NoVP.PRETO){
+        }
+        else{
+            corrigeCaso3(no);
+        }
     }
     void corrigeCaso3(NoVP no){
-        
+        if(no.getPai().getCor() == NoVP.VERMELHO && no.getTio().getCor() == NoVP.VERMELHO){
+            no.getPai().setCor(NoVP.PRETO);
+            no.getTio().setCor(NoVP.PRETO);
+            no.getAvo().setCor(NoVP.VERMELHO);
+            if(raiz.getCor() == NoVP.VERMELHO){
+                raiz.setCor(NoVP.PRETO);
+            }
+        }
+        else{
+            corrigeCaso4(no);
+        }
     }
+    
     void corrigeCaso4(NoVP no){
-        
+        NoVP pai = no.getPai();
+        NoVP avo = no.getAvo();
+        NoVP tio = no.getTio();
+        if(pai.getCor() == NoVP.VERMELHO && tio.getCor()== NoVP.PRETO){
+            if(avo.getAnt() == pai && pai.getProx() == no){
+                rotacaoEsquerda(pai);
+                corrigeCaso5(pai);
+            }
+            if(avo.getProx() == pai && pai.getAnt() == no){
+                rotacaoDireita(pai);
+                corrigeCaso5(pai);
+            }
+            corrigeCaso5(no);
+        }
     }
     void corrigeCaso5(NoVP no){
-        
+        NoVP pai = no.getPai();
+        NoVP avo = no.getAvo();
+        NoVP tio = no.getTio();
+        if(avo.getAnt() == pai){
+            rotacaoDireita(avo);
+        }
+        else{
+            rotacaoEsquerda(avo);
+        }
+        pai.setCor(NoVP.PRETO);
+        avo.setCor(NoVP.VERMELHO);
+        no.setCor(NoVP.VERMELHO);
     }
     void rotacaoEsquerda(NoVP no){
         NoVP y = no.getProx();
