@@ -8,9 +8,6 @@ public class ArvoreVP {
         raiz = null;
     }
     
-    void insere(int valor){
-        
-    }
     void remover(int p){
         
     }
@@ -21,10 +18,32 @@ public class ArvoreVP {
         return raiz;
     }
     
-    
-    void insereAVP(NoVP no,NoVP pai, int valor){
+        void insere(int valor){
         
     }
+    void insereAVP(NoVP no,NoVP pai, int valor){
+        if(no == null){
+            NoVP novo = new NoVP(valor);
+            if(pai != null){
+                novo.setPai(pai);
+                if(valor < pai.getValor()){
+                    pai.setAnt(novo);
+                }else{
+                    pai.setProx(novo);
+                }
+            }else{
+                raiz = novo;
+            }
+            corrigeCaso1(novo);
+        }else{
+            if(valor < no.getValor()){
+                insereAVP(no.getAnt(), no, valor);
+            }else{
+                insereAVP(no.getProx(), no, valor);
+            }
+        }
+    }
+    
     void deletaH(NoVP p){
         
     }
