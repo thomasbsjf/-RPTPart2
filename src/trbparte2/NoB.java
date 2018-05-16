@@ -1,4 +1,3 @@
-
 package trbparte2;
 
 public class NoB {

@@ -1,8 +1,8 @@
 package trbparte2;
 
 public class NoVP {
-    private static final int VERMELHO = 0;
-    private static final int PRETO = 1;
+    static final int VERMELHO = 0;
+    static final int PRETO = 1;
     NoVP proximo;
     NoVP anterior;
     NoVP pai;
