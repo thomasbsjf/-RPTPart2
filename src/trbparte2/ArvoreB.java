@@ -100,10 +100,7 @@ public class ArvoreB {
         
     }
     boolean buscar(int valor){
-       if(buscar(valor,raiz) != null){       
-            return true; 
-       }
-       return false;
+       return buscar(valor,raiz) != null;
     }
 
 }
