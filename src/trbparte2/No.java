@@ -4,7 +4,7 @@ public class No {
     private
     No proximo;
     private No anterior;
-    private Integer valor, altura, marca;
+    private int valor, altura, marca;
 
     public No(No proximo, No anterior) {
         this.proximo = null;
@@ -27,27 +27,27 @@ public class No {
         this.anterior = anterior;
     }
 
-    public Integer getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
     
-    public Integer getMarca() {
+    public int getMarca() {
         return marca;
     }
 
-    public void setMarca(Integer marca) {
+    public void setMarca(int marca) {
         this.marca = marca;
     }
 
-    public Integer getAltura() {
+    public int getAltura() {
         return altura;
     }
 
-    public void setAltura(Integer altura) {
+    public void setAltura(int altura) {
         this.altura = altura;
     }
     

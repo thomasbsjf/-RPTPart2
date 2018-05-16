@@ -13,7 +13,7 @@ public class AVL {
     }
     
     public int Altura(No p){
-        Integer alturaEsq, alturaDir;
+        int alturaEsq, alturaDir;
         if(p==null) return 0;
         else{
             alturaEsq = Altura(p.getAnterior());
