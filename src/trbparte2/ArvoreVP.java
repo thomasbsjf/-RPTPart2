@@ -8,18 +8,15 @@ public class ArvoreVP {
         raiz = null;
     }
     
-    void remover(int p){
-        
-    }
     int alturaVP(){
         return 0;
     }
     NoVP getRaiz(){
         return raiz;
-    }
-    
-        void insere(int valor){
+    }   
         
+    void insere(int valor){
+        insereAVP(raiz, null, valor);
     }
     void insereAVP(NoVP no,NoVP pai, int valor){
         if(no == null){
@@ -43,10 +40,7 @@ public class ArvoreVP {
             }
         }
     }
-    
-    void deletaH(NoVP p){
         
-    }
     void corrigeCaso1(NoVP no){
         if(no.getPai() == null){
             no.setCor(NoVP.PRETO);
@@ -146,6 +140,11 @@ public class ArvoreVP {
         y.setProx(no);
         no.setPai(y);
     }
+    
+    void remover(int p){
+        
+    }
+    
     void removerCaso1(NoVP n){
         
     }
@@ -165,13 +164,34 @@ public class ArvoreVP {
         
     }
     NoVP getPredecessor(NoVP no){
+        while(no.getProx() != null){
+            no = no.getProx();
+        }
         return no;
     }
     NoVP getIrmao(NoVP no){
-        return no;
+        if(no == null || no.getPai() == null){
+            //Nó ou pai do nó é null
+        }
+        if(no == no.getPai().getAnt()){
+            return no.getPai().getProx();
+        }else{
+            return no.getPai().getAnt();
+        }
     }
     void trocaNos(NoVP noVelho, NoVP noNovo){
-        
+        if(noVelho.getPai() == null){
+            raiz = noNovo;
+        }else{
+            if(noVelho == noVelho.getPai().getAnt()){
+                noVelho.getPai().setAnt(noNovo);
+            }else{
+                noVelho.getPai().setProx(noNovo);
+            }
+        }
+        if(noNovo != null){
+            noNovo.setPai(noVelho.getPai());
+        }
     }
     int altura(NoVP no){
         return 0;
