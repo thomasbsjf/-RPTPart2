@@ -339,6 +339,7 @@ public class ArvoreVP {
         }
         return no;
     }
+    
     NoVP getIrmao(NoVP no){
         if(no == null || no.getPai() == null){
             //Nó ou pai do nó é null
@@ -349,6 +350,7 @@ public class ArvoreVP {
             return no.getPai().getAnt();
         }
     }
+    
     void trocaNos(NoVP noVelho, NoVP noNovo){
         if(noVelho.getPai() == null){
             raiz = noNovo;
@@ -364,7 +366,48 @@ public class ArvoreVP {
         }
     }
     int altura(NoVP no){
-        return 0;
+        if(no == null)
+        {
+            return 0;
+        }
+        else
+        {
+            int esq = 0, dir = 0;
+            
+            if(no.getAnt()!= null && no.getProx() != null)
+            {
+                if(no.getAnt().getCor() == no.getProx().getCor())
+                {
+                    esq = altura(no.getAnt());
+                    dir = altura(no.getProx());
+                }
+                else
+                {
+                    if(no.getAnt().getCor() == NoVP.VERMELHO)
+                    {
+                        esq = altura(no.getAnt());
+                    }
+                    else
+                    {
+                        dir = altura(no.getAnt());
+                    }
+                }
+            }
+            else
+            {
+                esq = altura(no.getAnt());
+                dir = altura(no.getProx());
+            }
+            if(esq > dir)
+            {
+                return esq+1;
+            }
+            else
+            {
+                return dir+1;
+            }
+        }
+        
     }
     
 }
