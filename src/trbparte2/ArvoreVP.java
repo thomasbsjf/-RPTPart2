@@ -302,8 +302,37 @@ public class ArvoreVP {
             
     }
     void removerCaso6(NoVP n){
+        System.out.println("Remocao Caso 4 (No = " + n.getValor() + "):");
+        NoVP irmao = getIrmao(n);
+        if(irmao == null){
+            System.out.println("Irmao NULL");
+        }
+        irmao.setCor(n.getPai().getCor());
+        n.getPai().setCor(NoVP.PRETO);
         
+        if(n == n.getPai().getAnt())
+        {
+            if(irmao.getProx() == null){
+                System.out.println("Sobrinho a direita NULL");
+            }
+            else if(irmao.getProx().getCor()!= NoVP.VERMELHO)
+            {
+                System.out.println("Sobrinho a direita PRETO");
+            }
+            irmao.getProx().setCor(NoVP.PRETO);
+            rotacaoEsquerda(n.getPai());
+        }
+        else
+        {
+            if(irmao.getAnt()==null || irmao.getAnt().getCor()!= NoVP.VERMELHO)
+            {
+            System.out.println("Sobrinho a Esquerda NULL ou PRETO");
+            }
+            irmao.getAnt().setCor(NoVP.PRETO);
+            rotacaoDireita(n.getPai());
+        }
     }
+    
     NoVP getPredecessor(NoVP no){
         while(no.getProx() != null){
             no = no.getProx();
