@@ -206,7 +206,27 @@ public class ArvoreVP {
         }
     }
     void removerCaso2(NoVP n){
-        
+        System.out.println("Remocao Caso 1 (No = " + n.getValor() + "):");
+        NoVP irmao = getIrmao(n);
+        if(irmao.getCor() == NoVP.VERMELHO)
+        {
+            System.out.println("Irmao Vermelho -> Rotacionar");
+            n.getPai().setCor(NoVP.VERMELHO);
+            irmao.setCor(NoVP.PRETO);
+            if(n ==n.getPai().getAnt())
+            {
+                rotacaoEsquerda(n.getPai());
+            }
+            else
+            {
+                rotacaoDireita(n.getPai());
+            }
+        }
+        else
+        {
+            System.out.println("Irmao nao é vermelho");              
+        }
+        removerCaso3(n);
     }
     void removerCaso3(NoVP n){
         
