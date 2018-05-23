@@ -9,7 +9,7 @@ public class ArvoreVP {
     }
     
     int alturaVP(){
-        return 0;
+        return altura(raiz);
     }
     NoVP getRaiz(){
         return raiz;
@@ -194,7 +194,16 @@ public class ArvoreVP {
     }
     
     void removerCaso1(NoVP n){
-        
+        System.out.println("Remocao Caso 1 (No = " + n.getValor() + "):");
+        if(n.getPai() == null)
+        {
+            System.out.println("Pai NULL");
+        }
+        else
+        {
+            System.out.println("Pai nao NULL");
+            removerCaso2(n);
+        }
     }
     void removerCaso2(NoVP n){
         
