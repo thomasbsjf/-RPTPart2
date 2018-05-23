@@ -217,10 +217,16 @@ public class AVL {
         return p;
     }
     
-    void insere(int chave){
+    void Insere(int chave){
         raiz = InsereAVL(raiz, chave);
-        //raiz = CorrigeAVL(raiz);
+        raiz = CorrigeAVL(raiz);
         Set_FB(raiz);
     }
     
+    void Remover(int chave)
+    {
+        raiz = Remove(raiz, chave);
+        raiz = CorrigeAVL(raiz);
+        Set_FB(raiz);
+    }
 }
