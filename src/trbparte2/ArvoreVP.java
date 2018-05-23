@@ -257,10 +257,49 @@ public class ArvoreVP {
         removerCaso4(n);
     }
     void removerCaso4(NoVP n){
-        
+        System.out.println("Remocao Caso 4 (No = " + n.getValor() + "):");
+        NoVP irmao = getIrmao(n);
+        if(irmao == null){
+            System.out.println("Irmao NULL");
+        }
+        if(n.getPai()!= null && n.getPai().getCor() == NoVP.VERMELHO && irmao.getCor() == NoVP.PRETO)
+        {
+            if(irmao.getAnt() == null || irmao.getAnt().getCor() == NoVP.PRETO)
+            {
+                if(irmao.getProx() == null || irmao.getProx().getCor() == NoVP.PRETO)
+                {
+                    System.out.println("Pai VERMELHO, irmao e filhos PRETOS, colore irmao Vermelho");
+                    irmao.setCor(NoVP.VERMELHO);
+                    n.getPai().setCor(NoVP.PRETO);
+                }
+            }
+        }
+        removerCaso5(n);
     }
     void removerCaso5(NoVP n){
-        
+        System.out.println("Remocao Caso 4 (No = " + n.getValor() + "):");
+        NoVP irmao = getIrmao(n);
+        if(irmao == null){
+            System.out.println("Irmao NULL");
+        }
+        if(n ==n.getPai().getAnt() && irmao.getCor() == NoVP.PRETO
+                && (irmao.getAnt() != null && irmao.getAnt().getCor() == NoVP.VERMELHO)
+                && (irmao.getProx() == null || irmao.getAnt().getCor() == NoVP.PRETO))
+        {
+            irmao.setCor(NoVP.VERMELHO);
+            irmao.getAnt().setCor(NoVP.PRETO);
+            rotacaoDireita(irmao);
+        }
+        else if( n == n.getPai().getProx() && irmao.getCor() == NoVP.PRETO
+        && (irmao.getProx() != null && irmao.getProx().getCor() == NoVP.VERMELHO)
+        && (irmao.getAnt() == null || irmao.getAnt().getCor() == NoVP.PRETO))
+        {
+            irmao.setCor(NoVP.VERMELHO);
+            irmao.getProx().setCor(NoVP.PRETO);
+            rotacaoEsquerda(irmao);
+        }
+        removerCaso6(n);
+            
     }
     void removerCaso6(NoVP n){
         
