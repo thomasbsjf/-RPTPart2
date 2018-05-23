@@ -206,8 +206,9 @@ public class ArvoreVP {
         }
     }
     void removerCaso2(NoVP n){
-        System.out.println("Remocao Caso 1 (No = " + n.getValor() + "):");
+        System.out.println("Remocao Caso 2 (No = " + n.getValor() + "):");
         NoVP irmao = getIrmao(n);
+        //ADICIONAR CODIGO PARA TESTE SE NECESSARIO
         if(irmao.getCor() == NoVP.VERMELHO)
         {
             System.out.println("Irmao Vermelho -> Rotacionar");
@@ -229,7 +230,31 @@ public class ArvoreVP {
         removerCaso3(n);
     }
     void removerCaso3(NoVP n){
-        
+        System.out.println("Remocao Caso 3 (No = " + n.getValor() + "):");
+        NoVP irmao = getIrmao(n);
+        if(irmao == null)
+        {
+            System.out.println("ERRO: Irmao NULL");
+        }
+        if(n.getPai().getCor() == NoVP.PRETO && irmao.getCor() == NoVP.PRETO)
+        {
+            if(irmao.getAnt() == null || irmao.getAnt().getCor() == NoVP.PRETO)
+            {
+                if(irmao.getProx() == null || irmao.getProx().getCor() == NoVP.PRETO)
+                {
+                    irmao.setCor(NoVP.VERMELHO);
+                    if(irmao.getCor() == NoVP.VERMELHO)
+                    {
+                        System.out.println("A cor do No " + irmao.getValor() + "= VERMELHO");
+                    }
+                    else{
+                        System.out.println("A cor do No " + irmao.getValor() + "= PRETO");
+                    }
+                    removerCaso1(n.getPai());
+                }
+            }
+        }
+        removerCaso4(n);
     }
     void removerCaso4(NoVP n){
         
