@@ -69,6 +69,7 @@ public class ArvoreB {
     void deletaArvore(NoB n){
         
     }
+    
     NoB buscar(int valor, NoB n){
         NoB aux = new NoB();
         int k = 0;
@@ -95,13 +96,14 @@ public class ArvoreB {
         return null;
     }
     
-
+    boolean buscar(int valor){
+       return buscar(valor,raiz) != null;
+    }
+    
     void remover(int valor){
         
     }
     
-    boolean buscar(int valor){
-       return buscar(valor,raiz) != null;
-    }
+
 
 }
