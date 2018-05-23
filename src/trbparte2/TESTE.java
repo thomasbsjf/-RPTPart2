@@ -1,7 +1,7 @@
 package trbparte2;
 import java.util.Scanner;
 
-public class TESTE extends ED2_pt2{
+public class TESTE extends OperadorQuestions{
     int x;
 
     public TESTE(int x) {

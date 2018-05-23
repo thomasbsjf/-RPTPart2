@@ -10,7 +10,7 @@ public class Questions {
     String id;
     String user,data,score,title;
 
-    public Questions(String id, String user, String data, String score, String title) {
+    public Questions(String id, String user, String data, String score, String title){
         this.id = id;
         this.user = user;
         this.data = data;

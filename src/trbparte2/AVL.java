@@ -79,7 +79,18 @@ public class AVL {
                     p = rot_duplo_dir(p);
                 }
                        
-            }        
+            }else if(p.getMarca() == -2)
+            {
+                p.getProximo().setMarca((Calcula_FB(p.getProximo())));
+                if(p.getProximo().getMarca() < 0){
+                    p = rot_esq(p);
+                }else
+                {
+                    p = rot_duplo_esq(p);
+                }
+            }
+            p.setAnterior(CorrigeAVL(p.getAnterior()));
+            p.setProximo(CorrigeAVL(p.getProximo()));
         }
         return p;
     }
@@ -121,11 +132,88 @@ public class AVL {
         return null;
     }
     
-    public No RemoveAVL(No p, int n){
-        return p;
+    public No RemoveAVL(No p){
+        No aux;
+        No auxPai = null;
+        
+        if((p.getAnterior()== null) && (p.getProximo()==null))
+        {
+            p = null;
+            return null;
+        }
+        else if((p.getAnterior() == null) && (p.getProximo()!= null))
+        {
+            aux = p.getAnterior();
+            p = null;
+            return aux;
+        }
+        else if((p.getAnterior()!= null) && (p.getProximo() == null))
+        {
+            aux = p.getProximo();
+            p = null;
+            return aux;
+        }
+        else
+        {
+            if(p.getAnterior().getProximo() == null)
+            {
+                aux = p.getAnterior();
+                p.getAnterior().setProximo(p.getProximo());
+                p = null;
+                return aux;
+            }else
+            {
+                aux = p.getAnterior();               
+                while(aux.getProximo() != null)
+                {
+                    auxPai = aux;
+                    aux = aux.getProximo();
+                }
+                if(aux.getAnterior() != null){
+                    auxPai.setProximo(aux.getAnterior());
+                }
+                else{
+                    auxPai.setProximo(null);
+                }
+                aux.setProximo(p.getProximo());
+                aux.setAnterior(p.getAnterior());
+                p = null;
+                return aux;
+            }
+        }
     }
 
     public No Remove(No p, int n){
+        No aux = p;
+        No auxPai = null;
+        boolean bdir = false;
+        
+        if(n == p.getValor()) return RemoveAVL(aux);
+        
+        while(aux != null)
+        {
+            if(n == aux.getValor())
+            {
+                if(bdir) auxPai.setProximo(RemoveAVL(aux));
+                else auxPai.setAnterior(RemoveAVL(aux));
+                return p;
+            }
+            else
+            {
+                if(n < aux.getValor())
+                {
+                    bdir = false;
+                    auxPai = aux;
+                    aux = aux.getAnterior();
+                }
+                else
+                {
+                    bdir = true;
+                    auxPai = aux;
+                    aux = aux.getProximo();
+                }
+            }
+        }
         return p;
     }
     
