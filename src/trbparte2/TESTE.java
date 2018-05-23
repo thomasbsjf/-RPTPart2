@@ -22,7 +22,7 @@ public class TESTE extends OperadorQuestions{
         AVL a= new AVL();
         for(int i=0;i<x;i++)
         {
-            a.insere(Integer.parseInt(Q[i].id));
+            a.Insere(Integer.parseInt(Q[i].id));
 
         }
     }
