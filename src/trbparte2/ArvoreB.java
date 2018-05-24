@@ -63,7 +63,7 @@ public class ArvoreB {
             }
         }
     }
-    int split(NoB n, NoB novoNo){
+    int split(NoB no, NoB novoNo){
         
         novoNo = new NoB();
         int meio = NoB.MIN;
@@ -72,20 +72,20 @@ public class ArvoreB {
         
         for( i = meio+1; i <= NoB.MAX; ++i)
         {
-            novoNo.chave[k] = n.chave[i];
-            n.chave[i] = 0;
-            novoNo.filho[k] = n.filho[i];
-            n.filho[i] = null;
+            novoNo.chave[k] = no.chave[i];
+            no.chave[i] = 0;
+            novoNo.filho[k] = no.filho[i];
+            no.filho[i] = null;
             novoNo.tamanho++;
-            n.tamanho--;
+            no.tamanho--;
             k++;
         }
        
-        novoNo.filho[k] = n.filho[NoB.MAX+1];
-        n.filho[NoB.MAX+1] = null;
-        aux = n.chave[meio];
-        n.chave[meio] = 0;
-        n.tamanho--;
+        novoNo.filho[k] = no.filho[NoB.MAX+1];
+        no.filho[NoB.MAX+1] = null;
+        aux = no.chave[meio];
+        no.chave[meio] = 0;
+        no.tamanho--;
         return aux;
     }
     void deletaArvore(NoB n){
