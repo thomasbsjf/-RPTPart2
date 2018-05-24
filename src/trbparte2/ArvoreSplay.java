@@ -98,38 +98,113 @@ public class ArvoreSplay {
     void remove(){
         
     }
-    public NoSplay rot_zig_dir(NoSplay p){
-        NoSplay q = p.getAnterior();
-        p.setAnterior(q.getProximo());
-        q.setProximo(p);
-        return q;
-    }
-
-    public NoSplay rot_zig_esq(NoSplay p){
-        NoSplay q = p.getProximo();
-        p.setProximo(q.getAnterior());
-        q.setAnterior(p);
-        return q;
+    public NoSplay rotacaoDireita(NoSplay p, NoSplay q){
+        NoSplay r;
+        r = p.getAnterior();
+        p.setAnterior(r.getProximo());
+        if(r.getProximo() != null)
+        {
+            r.getProximo().setPai(p);
         }
+        r.setProximo(p);
+        if(p.getPai() != null)
+        {
+            if(p == p.getPai().getProximo())
+            {
+                p.getPai().setProximo(r);
+            }
+            else
+            {
+                p.getPai().setAnterior(r);
+            }
+        }
+        r.setPai(p.getPai());
+        p.setPai(r);
+        if( p == q)
+        {
+            return r;
+        }
+        else
+        {
+            return q;
+        }
+    }
     
-    public NoSplay rot_zigzag_dir(NoSplay p){
-        p = rot_zig_esq(p.getAnterior());
-        return rot_zig_dir(p);
-    }
-            
-    public NoSplay rot_zigzag_esq(NoSplay p){
-        p = rot_zig_dir(p.getProximo());
-        return rot_zig_esq(p);
+
+    public NoSplay rotacaoEsquerda(NoSplay p, NoSplay q){
+        NoSplay r;
+        r = p.getProximo();
+        p.setProximo(r.getAnterior());
+        if(r.getAnterior()!= null)
+        {
+            r.getAnterior().setPai(p);
+        }
+        r.setAnterior(p);
+        if(p.getPai() != null)
+        {
+            if(p == p.getPai().getAnterior())
+            {
+                p.getPai().setAnterior(r);
+            }
+            else
+            {
+                p.getPai().setProximo(r);
+            }
+        }
+        r.setPai(p.getPai());
+        p.setPai(r);
+        if( p == q)
+        {
+            return r;
+        }
+        else
+        {
+            return q;
+        }
     }
     
-    public NoSplay rot_zigzig_dir(NoSplay p){
-        return p;
-    }
-    public NoSplay rot_zigzig_esq(NoSplay p){
-        return p;
+    void splay(NoSplay no, NoSplay raiz)
+    {
+        NoSplay p, q;
+        
+        if( no==raiz) return;
+        else if(no.getPai() == raiz)
+        {
+            if(no==no.getPai().getAnterior())
+            {
+                raiz = rotacaoDireita(raiz, raiz);
+            }
+            else
+            {
+                raiz = rotacaoEsquerda(raiz, raiz);
+            }
+        }
+        else
+        {
+            p = no.getPai();
+            q = p.getPai();
+            if( no == p.getAnterior() && p == q.getAnterior())
+            {
+                raiz = rotacaoDireita(q, raiz);
+                raiz = rotacaoDireita(p, raiz);
+            }
+            else if(no ==p.getProximo() && p == q.getProximo())
+            {
+                raiz = rotacaoEsquerda(q, raiz);
+                raiz = rotacaoEsquerda(p, raiz);
+            }
+            else if(no == p.getProximo() && p == q.getAnterior())
+            {
+                raiz = rotacaoEsquerda(p, raiz);
+                raiz = rotacaoDireita(q, raiz);
+            }
+            else if(no == p.getAnterior() && p == q.getProximo())
+            {
+                raiz = rotacaoDireita(p, raiz);
+                raiz = rotacaoEsquerda(q, raiz);
+            }
+            splay (no,raiz);
+        }
     }
 
-    private void splay(NoSplay aux1, NoSplay no) {
-        
-    }
 }
