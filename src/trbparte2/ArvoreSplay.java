@@ -3,6 +3,10 @@ package trbparte2;
 public class ArvoreSplay {
 
     NoSplay raiz;
+
+    public NoSplay getRaiz() {
+        return raiz;
+    }
     
     public ArvoreSplay() {
         raiz = null;
@@ -25,8 +29,65 @@ public class ArvoreSplay {
             }
         return no;
         }
-        
+        else
+        {   
+            aux1 = null;
+            aux2 = no;
+            while(aux2 != null)
+            {
+                aux1 = aux2;
+                if(aux2.getValor() > valor)
+                {
+                    aux2 = aux2.getAnterior();
+                }
+                else if(aux2.getValor() < valor)
+                {
+                    aux2 = aux2.getProximo();
+                }
+                else
+                {
+                    if(aux2.getValor() == valor)
+                    {
+                        return aux2;
+                    }
+                }
+            }
+            if(aux1.getValor() > valor)
+            {
+                parente = aux1;
+                aux1.setAnterior(new NoSplay(valor));
+                aux1 = aux1.getAnterior();
+                
+                if(aux1 != null)
+                {
+                    aux1.setPai(parente);
+                }
+                else
+                {
+                    System.out.println("Erro de alocacao\n");
+                    System.exit(0);
+                }
+            }
+            else
+            {
+                parente = aux1;
+                aux1.setProximo(new NoSplay(valor));
+                aux1 = aux1.getProximo();
+                if(aux1 != null)
+                {
+                    aux1.setPai(parente);
+                }
+                else
+                {
+                    System.out.println("Erro de alocacao\n");
+                    System.exit(0);
+                }
+            }
+        }
+        splay(aux1,no);
+        return aux1;
     }
+    
     
     void insere(int valor)
     {
@@ -66,5 +127,9 @@ public class ArvoreSplay {
     }
     public NoSplay rot_zigzig_esq(NoSplay p){
         return p;
+    }
+
+    private void splay(NoSplay aux1, NoSplay no) {
+        
     }
 }
