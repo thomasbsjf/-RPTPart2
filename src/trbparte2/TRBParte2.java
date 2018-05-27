@@ -3,7 +3,7 @@ package trbparte2;
 public class TRBParte2 {
 
     public static void main(String[] args) {
-        TESTE T = new TESTE(100000);
+        InsereRemove T = new InsereRemove(100000);
         
     }
     
