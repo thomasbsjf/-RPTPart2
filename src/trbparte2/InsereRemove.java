@@ -21,6 +21,15 @@ public class InsereRemove extends OperadorQuestions
         long iniciovp = System.currentTimeMillis();
         InsArvoreVP();
         System.out.println("A insercao da Arvore VP executou em " + (System.currentTimeMillis() - iniciovp)/1000 + " segundos");        
+        long inicioREMavl = System.currentTimeMillis();
+        RemAVL();
+        System.out.println("A remocao da AVL executou em " + (System.currentTimeMillis() - inicioREMavl)/1000 + " segundos");
+        long inicioREMb = System.currentTimeMillis();
+        RemArvoreB();
+        System.out.println("A remocao da Arvore B executou em " + (System.currentTimeMillis() - inicioREMb)/1000 + " segundos");
+        long inicioREMvp = System.currentTimeMillis();
+        RemArvoreVP();
+        System.out.println("A remocao da Arvore VP executou em " + (System.currentTimeMillis() - inicioREMvp)/1000 + " segundos");
     }
     
     void setx(int x)
@@ -73,5 +82,38 @@ public class InsereRemove extends OperadorQuestions
         }
     }
     
+    void RemAVL()
+    {
+        Questions[]Q=new Questions[x];
+        Q=super.Inicia(x);
+        AVL a= new AVL();
+        for(int i=0;i<x;i++)
+        {
+            a.Remover(Integer.parseInt(Q[i].id));
+
+        }
+    }
+
+    void RemArvoreB()
+    {
+        Questions[] Q = new Questions[x];
+        Q=super.Inicia(x);
+        ArvoreB a = new ArvoreB();
+        for(int i=0; i<x; i++)
+        {
+            a.remover(Integer.parseInt(Q[i].id));
+        }
+    }  
+
+    void RemArvoreVP()
+    {
+        Questions[] Q = new Questions[x];
+        Q=super.Inicia(x);
+        ArvoreVP a = new ArvoreVP();
+        for(int i=0; i<x; i++)
+        {
+            a.remover(Integer.parseInt(Q[i].id));
+        }
+    }
     
 }
