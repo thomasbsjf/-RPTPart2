@@ -3,7 +3,7 @@ package trbparte2;
 public class ArvoreB {
     NoB raiz ;
 
-    public ArvoreB(NoB raiz) {
+    public ArvoreB() {
         raiz = null;
     }
     NoB getRaiz(){
