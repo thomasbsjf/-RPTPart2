@@ -13,7 +13,7 @@ public class InsereRemove extends OperadorQuestions
         InsAVL();
         System.out.println("A insercao da AVL executou em " + (System.currentTimeMillis() - inicioavl)/1000 + " segundos");
         long iniciob = System.currentTimeMillis();
-        InsArvoreB(raiz);
+        InsArvoreB();
         System.out.println("A insercao da Arvore B executou em " + (System.currentTimeMillis() - iniciob)/1000 + " segundos");
         long iniciosplay = System.currentTimeMillis();
         InsArvoreSplay();
@@ -40,11 +40,11 @@ public class InsereRemove extends OperadorQuestions
         }
     }
 
-    void InsArvoreB(NoB raiz)
+    void InsArvoreB()
     {
         Questions[] Q = new Questions[x];
         Q=super.Inicia(x);
-        ArvoreB a = new ArvoreB(raiz);
+        ArvoreB a = new ArvoreB();
         for(int i=0; i<x; i++)
         {
             a.inserir(Integer.parseInt(Q[i].id));
