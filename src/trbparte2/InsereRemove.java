@@ -1,34 +1,52 @@
 package trbparte2;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class InsereRemove extends OperadorQuestions
 {
     int x;
+    
 
-    public InsereRemove(int x, int op) 
-    {
+    public InsereRemove(int x, int op) throws IOException 
+    {   
         super(x);
         this.x=x;
+        FileWriter saidaB= new FileWriter("saidaBusca.txt");
+        FileWriter saidaI= new FileWriter("saidaInsercao.txt");
+        BufferedWriter B=new BufferedWriter(saidaB);
+        BufferedWriter I=new BufferedWriter(saidaI); 
+    
         switch(op){
             case 1:
                 long inicioavl = System.currentTimeMillis();
                 InsAVL();
-                System.out.println("A insercao da AVL executou em " + (System.currentTimeMillis() - inicioavl)/1000 + " segundos");
+                System.out.println("A insercao da AVL executou em " + (System.currentTimeMillis() - inicioavl)/1000 + " segundos"+" para N = "+x);               
+                I.write("A insercao da AVL executou em " + (System.currentTimeMillis() - inicioavl)/1000 + " segundos"+" para N = "+x);
+                I.newLine();
                 break;
             case 2:    
+                    
                 long iniciob = System.currentTimeMillis();
                 InsArvoreB();
                 System.out.println("A insercao da Arvore B executou em " + (System.currentTimeMillis() - iniciob)/1000 + " segundos");
+                I.write("A insercao da Arvore B executou em " + (System.currentTimeMillis() - iniciob)/1000 + " segundos");
+                I.newLine();
                 break;
             case 3:
                 long iniciosplay = System.currentTimeMillis();
                 InsArvoreSplay();
                 System.out.println("A insercao da Arvore Splay executou em " + (System.currentTimeMillis() - iniciosplay)/1000 + " segundos");
+                I.write("A insercao da Arvore Splay executou em " + (System.currentTimeMillis() - iniciosplay)/1000 + " segundos");
+                I.newLine();
                 break;
             case 4:    
                 long iniciovp = System.currentTimeMillis();
                 InsArvoreVP();
                 System.out.println("A insercao da Arvore VP executou em " + (System.currentTimeMillis() - iniciovp)/1000 + " segundos");        
+                I.write("A insercao da Arvore VP executou em " + (System.currentTimeMillis() - iniciovp)/1000 + " segundos");
+                I.newLine();
                 break;
             case 5:
                 long inicioREMavl = System.currentTimeMillis();
@@ -39,6 +57,8 @@ public class InsereRemove extends OperadorQuestions
                 long inicioREMb = System.currentTimeMillis();
                 RemArvoreB();
                 System.out.println("A remocao da Arvore B executou em " + (System.currentTimeMillis() - inicioREMb)/1000 + " segundos");
+                
+                        
                 break;
             case 7:
                 long inicioREMvp = System.currentTimeMillis();
